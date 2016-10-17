@@ -20,8 +20,8 @@
                     searchQuery: '=ngModel',
                     dropDownActive: '=',
                     locationChanged: '&',
-                    radius: '=',
-                    locationBias: '=locationBias'
+                    radius: '=?',
+                    locationBias: '=?'
                 },
                 link: function (scope, element, attrs, ngModel) {
                     scope.dropDownActive = false;
@@ -31,12 +31,12 @@
                     var searchEventTimeout = undefined;
                     var latLng = null;
 
-                    //navigator.geolocation.getCurrentPosition(function (position) {
-                    //    latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                    //});
-
                     if (scope.locationBias) {
                         latLng = new google.maps.LatLng(scope.locationBias.Lat, scope.locationBias.Long);
+                    }else{
+                        navigator.geolocation.getCurrentPosition(function (position) {
+                            latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                        });
                     }
 
                     var searchInputElement = angular.element(element.find('input'));
@@ -158,7 +158,7 @@
                 scope: {
                     searchQuery: '=ngModel',
                     locationChanged: '&',
-                    radius: '='
+                    radius: '=?'
                 },
                 link: function (scope, element, attrs, ngModel) {
                     scope.dropDownActive = false;
