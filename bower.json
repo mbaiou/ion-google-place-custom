@@ -1,0 +1,28 @@
+{
+  "name": "ion-google-place-custom",
+  "version": "1.0.0",
+  "homepage": "https://github.com/mbaiou/ion-google-place-custom",
+  "authors": [
+    "Moustafa Baiou <mbaiou_1@yahoo.com>"
+  ],
+  "description": "Ionic directive for a location field (using google maps geocoding)",
+  "main": [
+    "ion-bm-place.js",
+    "ion-bm-place-styles.css"
+  ],
+  "keywords": [
+    "ionic",
+    "maps",
+    "locations",
+    "dropdown",
+    "autocomplete"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
