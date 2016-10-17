@@ -1,7 +1,7 @@
 {
   "name": "ion-google-place-custom",
   "version": "1.0.0",
-  "description": "ion-google-place ================",
+  "description": "ion-google-place-custom ================",
   "main": "ion-bm-place.js",
   "directories": {},
   "devDependencies": {
