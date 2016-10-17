@@ -260,7 +260,7 @@
         '<i class="icon ion-search placeholder-icon"></i>' +
         '<input type="text" autocomplete="off" ng-model="searchQuery">' +
         '</label>' +
-        '<img src="img/powered_by_google_on_white_hdpi.png"/>' +
+        '<img src="images/powered_by_google_on_white_hdpi.png"/>' +
         '<div class="ion-place-tools-autocomplete-dropdown" ng-if="dropDownActive">' +
         '<ion-list>' +
         '<ion-item ng-repeat="location in locations" ng-click="selectLocation(location)">' +
@@ -274,7 +274,7 @@
     var templateAddress =
         '<div class="item ion-place-tools-autocomplete">' +
         '<input type="text" autocomplete="off" ng-model="searchQuery">' +
-        '<img src="img/powered_by_google_on_white_hdpi.png"/>' +
+        '<img src="images/powered_by_google_on_white_hdpi.png"/>' +
         '<div class="ion-place-tools-autocomplete-dropdown" ng-if="dropDownActive">' +
         '<ion-list>' +
         '<ion-item ng-repeat="location in locations" ng-click="selectAddress(location)">' +
