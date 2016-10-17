@@ -14,7 +14,7 @@
             return {
                 require: '?ngModel',
                 restrict: 'E',
-                templateUrl: 'src/ionGooglePlaceTemplate.html',
+                template: template,
                 replace: true,
                 scope: {
                     searchQuery: '=ngModel',
@@ -153,7 +153,7 @@
             return {
                 require: '?ngModel',
                 restrict: 'E',
-                templateUrl: 'src1/ionGooglePlaceAddressTemplate.html',
+                template: templateAddress,
                 replace: true,
                 scope: {
                     searchQuery: '=ngModel',
