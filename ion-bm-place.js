@@ -21,7 +21,8 @@
                     dropDownActive: '=',
                     locationChanged: '&',
                     radius: '=?',
-                    locationBias: '=?'
+                    locationBias: '=?',
+                    categories: '=?'
                 },
                 link: function (scope, element, attrs, ngModel) {
                     scope.dropDownActive = false;
@@ -45,40 +46,18 @@
                         scope.dropDownActive = false;
                         scope.selected = true;
                         //scope.ngModel = location.place_id;
-                        var service2 = new google.maps.places.PlacesService(searchInputElement[0]);
-                        var request = {placeId: location.place_id};
-                        service2.getDetails(request, function (result, status) {
-                            if (status == google.maps.places.PlacesServiceStatus.OK) {
-                                scope.searchQuery = {
-                                    loc_id: result.place_id,
-                                    name: result.name,
-                                    viewname: location.description,
-                                    location: {
-                                        address: result.formatted_address,
-                                        geo: {
-                                            lat: result.geometry.location.lat(),
-                                            long: result.geometry.location.lng()
-                                        }
-                                    },
-                                    open: true
-                                };
-                                if (result.opening_hours) {
-                                    scope.searchQuery.open = result.opening_hours.open_now
-                                }
-                                scope.$apply();
-                                if (scope.locationChanged) {
-                                    scope.locationChanged();
-                                }
-                            }
-                        });
-
-
+                        scope.searchQuery = location.description;
+                        scope.$apply();
+                        if (scope.locationChanged) {
+                            scope.locationChanged();
+                        }
                     };
+
                     if (!scope.radius) {
                         scope.radius = 100;
                     }
 
-                    scope.locations = []
+                    scope.locations = [];
 
                     scope.$watch('searchQuery', function (query) {
                         if (!query) {
@@ -99,7 +78,11 @@
                             if (latLng) {
                                 req.location = latLng;
                                 req.radius = scope.radius;
-                                req.types = ['establishment'];
+                                if(scope.categories){
+                                    req.types = scope.categories;
+                                }else{
+                                    req.types = ['establishment'];
+                                }
                                 req.componentRestrictions = {country: 'us'};
                             }
                             service.getPlacePredictions(req, function (predictions, status) {
@@ -178,7 +161,7 @@
                         scope.dropDownActive = false;
                         scope.searchQuery = location.description;
                         if (scope.locationChanged) {
-                            scope.locationChanged();
+                            scope.locationChanged({location: location});
                         }
                     };
                     if (!scope.radius) {

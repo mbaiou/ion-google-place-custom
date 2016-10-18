@@ -29,11 +29,16 @@ angular.module('myApp', [
 ```
 
 There are two kinds of usage:
-1. for regular addresses 
-`<ion-custom-google-place-address placeholder="1234 Any St, City, State 55555" ng-model="someModel" location-changed="someFunction()"/>`
+* for regular addresses
+* returns a google place autocomplete result
+* binds the model to an address only
+`<ion-custom-google-place-address placeholder="1234 Any St, City, State 55555" ng-model="someModel" location-changed="someFunction(location)"></ion-custom-google-place-address>`
 
-2. for place lookups
-`<ion--custom-google-place placeholder="Find a Place.." ng-model="someModel" location-changed="someFunction()" location-bias="coordinatesToBias"/>`
+* for Google Place lookups
+* returns a google place autocomplete result
+* binds the model to the a name like so 'establishmentName on Street in City, State'
+* categories requires an array of google place types
+`<ion-custom-google-place placeholder="Find a Place.." ng-model="someModel" location-changed="someFunction()" location-bias="coordinatesToBias" categories="['restaurant']"></ion-custom-google-place>`
 
 
 the coordinatesToBias for location-bias should be a latlng object from google maps api
