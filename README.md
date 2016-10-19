@@ -32,12 +32,14 @@ There are two kinds of usage:
 * for regular addresses
 * returns a google place autocomplete result
 * binds the model to an address only
+* if you need to attach to the interior input the id='user_input_address'
 `<ion-custom-google-place-address placeholder="1234 Any St, City, State 55555" ng-model="someModel" location-changed="someFunction(location)"></ion-custom-google-place-address>`
 
 * for Google Place lookups
 * returns a google place autocomplete result
 * binds the model to the a name like so 'establishmentName on Street in City, State'
 * categories requires an array of google place types
+* if you need to attach to the interior input the id='user_input_place'
 `<ion-custom-google-place placeholder="Find a Place.." ng-model="someModel" location-changed="someFunction()" location-bias="coordinatesToBias" categories="['restaurant']"></ion-custom-google-place>`
 
 

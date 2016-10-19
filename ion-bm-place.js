@@ -241,7 +241,7 @@
         '<div class="item ion-place-tools-autocomplete">' +
         '<label class="item-input">' +
         '<i class="icon ion-search placeholder-icon"></i>' +
-        '<input type="text" autocomplete="off" ng-model="searchQuery">' +
+        '<input type="text" autocomplete="off" ng-model="searchQuery" id="user_input_place">' +
         '</label>' +
         '<img src="images/powered_by_google_on_white_hdpi.png"/>' +
         '<div class="ion-place-tools-autocomplete-dropdown" ng-if="dropDownActive">' +
@@ -256,7 +256,7 @@
 // Add flexibility to template directive
     var templateAddress =
         '<div class="item ion-place-tools-autocomplete">' +
-        '<input type="text" autocomplete="off" ng-model="searchQuery">' +
+        '<input type="text" autocomplete="off" ng-model="searchQuery" id="user_input_address">' +
         '<img src="images/powered_by_google_on_white_hdpi.png"/>' +
         '<div class="ion-place-tools-autocomplete-dropdown" ng-if="dropDownActive">' +
         '<ion-list>' +
