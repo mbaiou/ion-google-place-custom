@@ -48,7 +48,7 @@
                         scope.searchQuery = location.description;
                         scope.$apply();
                         if (scope.locationChanged) {
-                            scope.locationChanged();
+                            scope.locationChanged({location: location});
                         }
                     };
 

@@ -44,7 +44,7 @@ There are two kinds of usage:
 * categories requires an array of google place types
 * if you need to attach to the interior input the id='user_input_place'
 ```html
-<ion-custom-google-place placeholder="Find a Place.." ng-model="someModel" location-changed="someFunction()" location-bias="coordinatesToBias">
+<ion-custom-google-place placeholder="Find a Place.." ng-model="someModel" location-changed="someFunction(location)" location-bias="coordinatesToBias">
 </ion-custom-google-place>
 ```
 
