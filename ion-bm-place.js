@@ -46,7 +46,6 @@
                         scope.selected = true;
                         //scope.ngModel = location.place_id;
                         scope.searchQuery = location.description;
-                        scope.$apply();
                         if (scope.locationChanged) {
                             scope.locationChanged({location: location});
                         }
