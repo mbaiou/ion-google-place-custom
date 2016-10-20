@@ -71,8 +71,6 @@
                                 return;
                             }
 
-                            scope.showSpinner = true;
-
                             var req = {};
                             req.input = query;
                             if (latLng) {
@@ -84,7 +82,6 @@
                             service.getPlacePredictions(req, function (predictions, status) {
                                 if (status == google.maps.places.PlacesServiceStatus.OK) {
                                     scope.locations = predictions;
-                                    scope.showSpinner = false;
                                     scope.$apply();
                                 }
                             });
@@ -181,7 +178,6 @@
                                 return;
                             }
 
-                            scope.showSpinner = true;
 
                             var req = {};
                             req.input = query;
@@ -192,9 +188,9 @@
                                 req.componentRestrictions = {country: 'us'};
                             }
                             service.getPlacePredictions(req, function (predictions, status) {
+                                scope.showSpinner = false;
                                 if (status == google.maps.places.PlacesServiceStatus.OK) {
                                     scope.locations = predictions;
-                                    scope.showSpinner = false;
                                     scope.$apply();
                                 }
                             });
@@ -244,8 +240,7 @@
         '</label>' +
         '<img src="images/powered_by_google_on_white_hdpi.png"/>' +
         '<div class="ion-place-tools-autocomplete-dropdown" ng-if="dropDownActive">' +
-        '<ion-spinner ng-if="showSpinner"></ion-spinner>'+
-        '<ion-list ng-if="!showSpinner">' +
+        '<ion-list>' +
         '<ion-item ng-repeat="location in locations" ng-click="selectLocation(location)">' +
         '{{location.terms[0].value}}' + '<p>' + ' on ' + '{{location.terms[1].value}}' + ' in ' + '{{location.terms[2].value}}' + ',' + '{{location.terms[3].value}}' + '</p>' +
         '</ion-item>' +
@@ -259,8 +254,7 @@
         '<input type="text" autocomplete="off" ng-model="searchQuery" id="user_input_address">' +
         '<img src="images/powered_by_google_on_white_hdpi.png"/>' +
         '<div class="ion-place-tools-autocomplete-dropdown" ng-if="dropDownActive">' +
-        '<ion-spinner ng-if="showSpinner"></ion-spinner>'+
-        '<ion-list ng-if="!showSpinner">' +
+        '<ion-list>' +
         '<ion-item ng-repeat="location in locations" ng-click="selectAddress(location)">' +
         '{{location.description}}' +
         '</ion-item>' +
