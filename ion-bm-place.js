@@ -256,7 +256,9 @@
         '<div class="ion-place-tools-autocomplete-dropdown" ng-if="dropDownActive">' +
         '<ion-list>' +
         '<ion-item ng-repeat="location in locations" ng-click="selectAddress(location)">' +
+        '<p>' +
         '{{location.description}}' +
+        '</p>'+
         '</ion-item>' +
         '</ion-list>' +
         '</div>' +
