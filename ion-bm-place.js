@@ -18,11 +18,10 @@
                 replace: true,
                 scope: {
                     searchQuery: '=ngModel',
-                    dropDownActive: '=',
+                    dropDownActive: '=?',
                     locationChanged: '&',
                     radius: '=?',
-                    locationBias: '=?',
-                    categories: '=?'
+                    locationBias: '=?'
                 },
                 link: function (scope, element, attrs, ngModel) {
                     scope.dropDownActive = false;
@@ -71,27 +70,25 @@
                                 scope.locations = [];
                                 return;
                             }
-                            ;
+
+                            scope.showSpinner = true;
 
                             var req = {};
                             req.input = query;
                             if (latLng) {
                                 req.location = latLng;
                                 req.radius = scope.radius;
-                                if(scope.categories){
-                                    req.types = scope.categories;
-                                }else{
-                                    req.types = ['establishment'];
-                                }
+                                req.types = ['establishment'];
                                 req.componentRestrictions = {country: 'us'};
                             }
                             service.getPlacePredictions(req, function (predictions, status) {
                                 if (status == google.maps.places.PlacesServiceStatus.OK) {
                                     scope.locations = predictions;
+                                    scope.showSpinner = false;
                                     scope.$apply();
                                 }
                             });
-                        }, 50); // we're throttling the input by 50ms to be nice to google's API
+                        }, 250); // we're throttling the input by 250ms to be nice to google's API
                     });
 
                     var onClick = function (e) {
@@ -141,7 +138,8 @@
                 scope: {
                     searchQuery: '=ngModel',
                     locationChanged: '&',
-                    radius: '=?'
+                    radius: '=?',
+                    dropDownActive: '=?'
                 },
                 link: function (scope, element, attrs, ngModel) {
                     scope.dropDownActive = false;
@@ -182,7 +180,8 @@
                                 scope.locations = [];
                                 return;
                             }
-                            ;
+
+                            scope.showSpinner = true;
 
                             var req = {};
                             req.input = query;
@@ -195,11 +194,11 @@
                             service.getPlacePredictions(req, function (predictions, status) {
                                 if (status == google.maps.places.PlacesServiceStatus.OK) {
                                     scope.locations = predictions;
-                                    console.log(scope.locations);
+                                    scope.showSpinner = false;
                                     scope.$apply();
                                 }
                             });
-                        }, 50); // we're throttling the input by 50ms to be nice to google's API
+                        }, 250); // we're throttling the input by 250ms to be nice to google's API
                     });
 
                     var onClick = function (e) {
@@ -245,7 +244,8 @@
         '</label>' +
         '<img src="images/powered_by_google_on_white_hdpi.png"/>' +
         '<div class="ion-place-tools-autocomplete-dropdown" ng-if="dropDownActive">' +
-        '<ion-list>' +
+        '<ion-spinner ng-if="showSpinner"></ion-spinner>'+
+        '<ion-list ng-if="!showSpinner">' +
         '<ion-item ng-repeat="location in locations" ng-click="selectLocation(location)">' +
         '{{location.terms[0].value}}' + '<p>' + ' on ' + '{{location.terms[1].value}}' + ' in ' + '{{location.terms[2].value}}' + ',' + '{{location.terms[3].value}}' + '</p>' +
         '</ion-item>' +
@@ -259,7 +259,8 @@
         '<input type="text" autocomplete="off" ng-model="searchQuery" id="user_input_address">' +
         '<img src="images/powered_by_google_on_white_hdpi.png"/>' +
         '<div class="ion-place-tools-autocomplete-dropdown" ng-if="dropDownActive">' +
-        '<ion-list>' +
+        '<ion-spinner ng-if="showSpinner"></ion-spinner>'+
+        '<ion-list ng-if="!showSpinner">' +
         '<ion-item ng-repeat="location in locations" ng-click="selectAddress(location)">' +
         '{{location.description}}' +
         '</ion-item>' +
