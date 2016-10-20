@@ -44,9 +44,15 @@ There are two kinds of usage:
 * categories requires an array of google place types
 * if you need to attach to the interior input the id='user_input_place'
 ```html
-<ion-custom-google-place placeholder="Find a Place.." ng-model="someModel" location-changed="someFunction()" location-bias="coordinatesToBias" categories="['restaurant']">
+<ion-custom-google-place placeholder="Find a Place.." ng-model="someModel" location-changed="someFunction()" location-bias="coordinatesToBias">
 </ion-custom-google-place>
 ```
 
 
 the coordinatesToBias for location-bias should be a latlng object from google maps api
+
+
+#TODO
+* google place search based directive for specific place search (instead of autocomplete)
+* add tests
+* add example app
